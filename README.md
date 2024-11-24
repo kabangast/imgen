@@ -1,4 +1,10 @@
-# Bing Image Generator Web App
+# 🎨 Bing Image Generator Web App
+
+> A sleek, dark-themed web application that generates AI images using Bing Image Creator (DALL-E). Built with Flask and modern web technologies.
+
+![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
+![Flask](https://img.shields.io/badge/Flask-2.3.3-green.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 A Flask-based web application that generates images using Bing's Image Creator (powered by DALL-E). This application provides a simple and intuitive interface to generate AI images from text prompts.
 
