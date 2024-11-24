@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-    max-width: 600px;
+    max-width: 1200px;
     margin: 50px auto;
     padding: 20px;
     background: #2d2d2d;
@@ -25,6 +25,8 @@ h1 {
 form {
     display: flex;
     gap: 10px;
+    max-width: 600px;
+    margin: 0 auto 30px;
 }
 
 input {
@@ -65,4 +67,257 @@ button:hover {
     border: 1px solid #404040;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Grid Layout */
+.images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.image-item {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #333333;
+    transition: transform 0.2s ease;
+}
+
+.image-item:hover {
+    transform: scale(1.02);
+}
+
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+    margin: auto;
+    display: block;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.modal-close {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    color: #f1f1f1;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.modal-close:hover {
+    color: #2196F3;
+}
+
+/* Navigation Arrows */
+.nav-arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.nav-arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-arrow i {
+    color: white;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.nav-arrow:hover i {
+    transform: scale(1.2);
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+/* Responsive adjustments for navigation arrows */
+@media (max-width: 768px) {
+    .nav-arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-arrow i {
+        font-size: 18px;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+}
+
+/* Loading and Error States */
+#imagesContainer p {
+    color: #888888;
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+.loading, .error, .no-history {
+    color: #888888;
+    font-size: 16px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.error {
+    color: #ff6b6b;
+}
+
+.loading {
+    color: #4dabf7;
+}
+
+.no-history {
+    color: #888888;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+/* History Section */
+.history-section {
+    margin-top: 40px;
+    border-top: 1px solid #404040;
+    padding-top: 20px;
+}
+
+.history-section h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.history-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.history-item {
+    background: #333333;
+    border-radius: 10px;
+    padding: 20px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.history-info {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.history-prompt {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+.history-time {
+    font-size: 14px;
+    color: #888888;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    .images-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .history-section {
+        margin-top: 30px;
+        padding-top: 15px;
+    }
+
+    .history-grid {
+        gap: 20px;
+    }
+
+    .history-item {
+        padding: 15px;
+    }
+
+    .history-prompt {
+        font-size: 14px;
+    }
+
+    .history-time {
+        font-size: 12px;
+    }
 }
