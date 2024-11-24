@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bing Art Generator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bing Art Generator</h1>
+        <form id="promptForm">
+            <input type="text" id="promptInput" name="prompt" placeholder="Enter your image prompt..." required>
+            <button type="submit">Generate</button>
+        </form>
+        <div id="imagesContainer"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('promptForm');
+        const imagesContainer = document.getElementById('imagesContainer');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            imagesContainer.innerHTML = '<p>Loading...</p>';
+            const prompt = document.getElementById('promptInput').value;
+
+            try {
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({ prompt }),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    imagesContainer.innerHTML = '';
+                    result.images.forEach(url => {
+                        const img = document.createElement('img');
+                        img.src = url;
+                        imagesContainer.appendChild(img);
+                    });
+                } else {
+                    imagesContainer.innerHTML = `<p>Error: ${result.error}</p>`;
+                }
+            } catch (error) {
+                imagesContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
